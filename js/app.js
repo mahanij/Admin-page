@@ -1,10 +1,10 @@
 let array = [];
 
-let secondArray = [];
-
 let form = document.getElementsByTagName("form")[0];
 
 var tableBody = document.getElementsByTagName("tbody")[0];
+
+const searchBox = document.querySelector(".input");
 
 form.addEventListener("submit", (e) => {
   if (
@@ -53,6 +53,20 @@ form.addEventListener("submit", (e) => {
   }
 
   e.preventDefault();
+});
+searchBox.addEventListener("input", (e) => {
+  let results = [];
+  for (let i = 0; i < array.length; i++) {
+    console.log(array[i][0]);
+    let result = [array[i][0]].filter((...args) => {
+      console.log(args[0]);
+      return e.target.value == args[0];
+    });
+    if (result.length > 0) {
+      results.push(result[0]);
+    }
+  }
+  console.log(results);
 });
 
 let productName = document.querySelector("#input1");
