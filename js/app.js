@@ -2,7 +2,9 @@ let array = [];
 
 let form = document.getElementsByTagName("form")[0];
 
-var tableBody = document.getElementsByTagName("tbody")[0];
+let tableBody = document.getElementsByTagName("tbody")[0];
+
+let searchBox = document.querySelector(".search-box");
 
 const searchBox = document.querySelector(".input");
 
@@ -40,7 +42,6 @@ form.addEventListener("submit", (e) => {
       e.target.age.value,
     ];
     array.push(productList);
-    console.log(array);
     e.target.productName.value = "";
     e.target.age.value = "";
     e.target.exist.value = "";
@@ -96,4 +97,23 @@ exist.addEventListener("blur", (e) => {
   } else {
     e.target.classList.remove("border-red");
   }
+});
+
+searchBox.addEventListener("input", (e) => {
+  var results = [];
+  var searchWords = e.target.value.toLowerCase();
+  array.filter((item) => {
+    if (item[0].toLowerCase().includes(searchWords)) {
+      results.push(item);
+    }
+  });
+  console.log(results);
+    tableBody.innerHTML = "";
+    results.forEach((item) => {
+      console.log(item)
+      var tr2 = document.createElement("tr");
+      console.log(item + " , this is item");
+      tr2.innerHTML = `<td>${item[0]}</td> <td>${item[1]}</td> <td>${item[2]}</td>`;
+      tableBody.appendChild(tr2);
+    });
 });
