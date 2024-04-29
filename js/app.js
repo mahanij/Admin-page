@@ -47,27 +47,26 @@ form.addEventListener("submit", (e) => {
     tableBody.innerHTML = "";
     array.forEach((item) => {
       let tr = document.createElement("tr");
-      tableBody.append(tr);
+      tableBody.appendChild(tr);
       tr.innerHTML = `<td>${item[0]}</td> <td>${item[1]}</td> <td>${item[2]}</td>`;
     });
   }
 
   e.preventDefault();
 });
+
+let results = [];
+
 searchBox.addEventListener("input", (e) => {
-  let results = [];
   for (let i = 0; i < array.length; i++) {
-    console.log(array[i][0]);
-    let result = [array[i][0]].filter((...args) => {
-      console.log(args[0]);
-      return e.target.value == args[0];
+    let result = array.filter((item) => {
+      results.push(result);
+      return array[i][0] == e.target.value;
     });
-    if (result.length > 0) {
-      results.push(result[0]);
-    }
   }
-  console.log(results);
 });
+
+console.log(results);
 
 let productName = document.querySelector("#input1");
 
